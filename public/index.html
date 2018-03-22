@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<title>Curry night listing</title>
   <style>
     * {
       font-family: sans-serif;
+      box-sizing: border-box;
+    }
+    body {
+      padding: 30px;
+      margin: 0;
     }
     table {
-      td {
-        padding: 20px;
-      }
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+    }
+    td, th {
+      padding: 10px;
+      border-right: 1px solid #ddd;
+    }
+    td {
+      font-weight: 100;
+    }
+    th {
+      text-align: left;
+    }
+    tr {
+      transition: background-color ease 300ms;
+    }
+    tr:nth-child(even) {
+      background-color: #f3f3f3;
+    }
+    tr:not(:first-of-type):hover {
+      background-color: #ccc;
+    }
+    a {
+      text-decoration: none;
+      background: #eca749;
+      padding: 10px 20px;
+      line-height: 1.7;
+      display: inline-block;
+      color: #000;
+      transition: background ease 300ms;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-top: 30px;
+    }
+    a:hover {
+      background: #e69322;
     }
   </style>
 </head>
-
 <body>
-  <a href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit me</a>
 	<div id="root"></div>
 </body>
 </html>

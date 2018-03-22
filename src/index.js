@@ -5,16 +5,27 @@ const CurryNight = ({ items }) => (
   <div>
     <table>
       <tbody>
+          <tr>
+            <th>Venue</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Attendee count</th>
+            <th>Captain</th>
+            <th>Rating</th>
+          </tr>
         {items.map(item => (
           <tr>
             <td>{item["gsx$venue"]["$t"]}</td>
-            <td>{item["gsx$rating"]["$t"]}</td>
             <td>{item["gsx$location"]["$t"]}</td>
             <td>{item["gsx$date"]["$t"]}</td>
+            <td>{item["gsx$attendees"]["$t"]}</td>
+            <td>{item["gsx$captain"]["$t"]}</td>
+            <td>{item["gsx$rating"]["$t"]}</td>
           </tr>
         ))}
       </tbody>
     </table>
+    <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit data</a>
   </div>
 );
         
@@ -40,7 +51,7 @@ class App extends Component {
     if (this.state.data.length > 0) {
       return <CurryNight items={this.state.data} />;
     }
-    return <p>Loading...</p>;
+    return <p>Loading curry madness...</p>;
   }
 }
 
