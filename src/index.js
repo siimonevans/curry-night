@@ -9,7 +9,6 @@ const Table = ({ items }) => (
     <table>
       <tbody>
           <tr>
-            <th>Number</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Attendee count</th>
@@ -18,7 +17,6 @@ const Table = ({ items }) => (
           </tr>
         {items.map(item => (
           <tr>
-            <td>{item["gsx$number"]["$t"]}</td>
             <td>{item["gsx$venue"]["$t"]}</td>
             <td>{item["gsx$date"]["$t"]}</td>
             <td>{item["gsx$attendees"]["$t"]}</td>
