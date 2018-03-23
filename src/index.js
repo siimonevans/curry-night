@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import GoogleMapReact from 'google-map-react'
+import { markerStyle } from './marker-style.js';
+const MapComponent = ({ text }) => <div style={ markerStyle }>{ text }</div>;
 
-const CurryNight = ({ items }) => (
+const Table = ({ items }) => (
   <div>
     <table>
       <tbody>
           <tr>
+            <th>Number</th>
             <th>Venue</th>
-            <th>Location</th>
             <th>Date</th>
             <th>Attendee count</th>
             <th>Captain</th>
@@ -15,8 +18,8 @@ const CurryNight = ({ items }) => (
           </tr>
         {items.map(item => (
           <tr>
+            <td>{item["gsx$number"]["$t"]}</td>
             <td>{item["gsx$venue"]["$t"]}</td>
-            <td>{item["gsx$location"]["$t"]}</td>
             <td>{item["gsx$date"]["$t"]}</td>
             <td>{item["gsx$attendees"]["$t"]}</td>
             <td>{item["gsx$captain"]["$t"]}</td>
@@ -25,7 +28,26 @@ const CurryNight = ({ items }) => (
         ))}
       </tbody>
     </table>
-    <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit data</a>
+    <a className="edit-data" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit data</a>
+  </div>
+);
+
+const Map = ({ items }) => (
+  <div className='google-map'>
+    <GoogleMapReact
+      defaultCenter={{ 
+        lat: 51.472067, 
+        lng: -2.580673
+      }}
+      defaultZoom={ 13 } >
+      {items.map(item => (
+        <MapComponent
+          lat={item['gsx$lat']['$t']}
+          lng={item['gsx$lng']['$t']}
+          text={item['gsx$venue']['$t']}
+        />
+      ))}
+    </GoogleMapReact>
   </div>
 );
         
@@ -36,6 +58,7 @@ class App extends Component {
       data: []
     };
   }
+
   componentDidMount() {
     fetch(
       "https://spreadsheets.google.com/feeds/list/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/od6/public/values?alt=json"
@@ -49,7 +72,12 @@ class App extends Component {
   }
   render() {
     if (this.state.data.length > 0) {
-      return <CurryNight items={this.state.data} />;
+      return (
+        <div className="flex">
+          <Table items={ this.state.data } /> 
+          <Map items={ this.state.data } /> 
+        </div>
+      )
     }
     return <p>Loading curry madness...</p>;
   }
