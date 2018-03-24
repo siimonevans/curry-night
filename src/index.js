@@ -17,8 +17,8 @@ const Table = ({ items }) => (
           <th>Captain</th>
           <th>Rating</th>
         </tr>
-        {items.map(item => (
-          <tr>
+        {items.map((item, i) => (
+          <tr key={i}>
             <td>{item["gsx$venue"]["$t"]}</td>
             <td>{item["gsx$date"]["$t"]}</td>
             <td>{item["gsx$attendees"]["$t"]}</td>
@@ -45,8 +45,8 @@ const Map = ({ items }) => (
         styles: require("./map/map-style.json"),
       }}
     >
-    {items.map(item => (
-      <MapMarker
+    {items.map((item, i) => (
+      <MapMarker key={i}
         lat={item["gsx$lat"]["$t"]}
         lng={item["gsx$lng"]["$t"]}
         text={item["gsx$venue"]["$t"]}
