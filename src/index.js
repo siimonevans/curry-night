@@ -8,17 +8,17 @@ const dataSheet = "https://spreadsheets.google.com/feeds/list/1-5S5IVks0uIem8IlD
 // Build table
 const Table = ({ items }) => (
   <div>
-    <table>
+    <table id="data-table">
       <tbody>
         <tr>
           <th>Venue</th>
           <th>Date</th>
-          <th>Attendee count</th>
+          <th>Attendees</th>
           <th>Captain</th>
           <th>Rating</th>
         </tr>
         {items.map((item, i) => (
-          <tr key={i}>
+          <tr key={i} data-val={i}>
             <td>{item["gsx$venue"]["$t"]}</td>
             <td>{item["gsx$date"]["$t"]}</td>
             <td>{item["gsx$attendees"]["$t"]}</td>
@@ -34,22 +34,24 @@ const Table = ({ items }) => (
 
 // Build map
 const Map = ({ items }) => (
-  <div className="google-map">
+  <div className="google-map" id="google-map">
     <GoogleMapReact
       defaultZoom={13}
       defaultCenter={{ 
-        lat: 51.472067, 
-        lng: -2.580673
+        lat: 51.468067, 
+        lng: -2.589673
       }}
       options={{
         styles: require("./map/map-style.json"),
       }}
     >
     {items.map((item, i) => (
-      <MapMarker key={i}
+
+      // Add map markers
+      <MapMarker key={i} data-val={i}
         lat={item["gsx$lat"]["$t"]}
         lng={item["gsx$lng"]["$t"]}
-        text={item["gsx$venue"]["$t"]}
+        text={i}
       />
     ))}
     </GoogleMapReact>
@@ -62,6 +64,48 @@ class App extends Component {
     this.state = {
       data: []
     };
+  }
+
+  componentDidUpdate() {
+
+    // Highlight markers on table row hover
+    function highlightMarker() {
+      let i;
+
+      function addRowHandlers() {
+        let table = document.getElementById("data-table");
+        let rows = table.getElementsByTagName("tr");
+
+        for (i = 0; i < rows.length; i++) {
+          let currentRow = table.rows[i];
+
+          let createClickHandler = function(row) {
+            return function() {
+              let dataValue = row.dataset.val;
+              let markers = document.getElementById("google-map").getElementsByTagName("div");
+
+              // Remove hover class
+              for (let i = 0; i < markers.length; i++) {
+                markers[i].classList.remove("marker-hover");
+              }
+
+              // Add hover class to matched marker
+              for (let i = 0; i < markers.length; i++) {
+                if (markers[i].textContent === dataValue) {
+                  markers[i].childNodes[0].classList.add("marker-hover");
+                  break;
+                }
+              }
+            }
+          }
+
+          // Fire on table row hover
+          currentRow.onmouseover = createClickHandler(currentRow);
+        }
+      }
+      addRowHandlers();
+    }
+    highlightMarker();
   }
 
   componentDidMount() {
@@ -84,14 +128,17 @@ class App extends Component {
       // Show table and map if data is found
       return (
         <div className="flex">
-          <Table items={ this.state.data } /> 
+          <div className="left">
+            <h1>Torchbox Curry Night</h1>
+            <Table items={ this.state.data } /> 
+          </div>
           <Map items={ this.state.data } /> 
         </div>
       )
     }
 
     // Show loader until data is ready
-    return <p>Loading curry madness...</p>;
+    return <p className="loading">Loading curry madness...</p>;
   }
 }
 
