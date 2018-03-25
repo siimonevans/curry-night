@@ -7,7 +7,7 @@ const dataSheet = "https://spreadsheets.google.com/feeds/list/1-5S5IVks0uIem8IlD
 
 // Build table
 const Table = ({ items }) => (
-  <div>
+  <div className="table-wrapper">
     <table id="data-table">
       <tbody>
         <tr>
@@ -28,7 +28,6 @@ const Table = ({ items }) => (
         ))}
       </tbody>
     </table>
-    <a className="edit-data" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit</a>
   </div>
 );
 
@@ -131,6 +130,7 @@ class App extends Component {
           <div className="content">
             <h1>Torchbox Curry Night</h1>
             <Table items={ this.state.data } /> 
+            <a className="edit-data" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit</a>
           </div>
           <Map items={ this.state.data } /> 
         </div>
