@@ -5,7 +5,7 @@ import { markerStyle } from "./map/marker-style.js";
 const MapMarker = ({ text }) => <div style={ markerStyle }>{ text }</div>;
 const dataSheet = "https://spreadsheets.google.com/feeds/list/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/od6/public/values?alt=json";
 
-// Build table
+{/* Build table */}
 const Table = ({ items }) => (
   <div className="table-wrapper">
     <table id="data-table">
@@ -31,7 +31,7 @@ const Table = ({ items }) => (
   </div>
 );
 
-// Build map
+{/* Build map */}
 const Map = ({ items }) => (
   <div className="google-map" id="google-map">
     <GoogleMapReact
@@ -45,8 +45,6 @@ const Map = ({ items }) => (
       }}
     >
     {items.map((item, i) => (
-
-      // Add map markers
       <MapMarker key={i} data-val={i}
         lat={item["gsx$lat"]["$t"]}
         lng={item["gsx$lng"]["$t"]}
@@ -67,7 +65,7 @@ class App extends Component {
 
   componentDidUpdate() {
 
-    // Highlight markers on table row hover
+    {/* Highlight markers on table row hover */}
     function highlightMarker() {
       let i;
 
@@ -83,12 +81,12 @@ class App extends Component {
               let dataValue = row.dataset.val;
               let markers = document.getElementById("google-map").getElementsByTagName("div");
 
-              // Remove hover class
+              {/* Remove hover class */}
               for (let i = 0; i < markers.length; i++) {
                 markers[i].classList.remove("marker-hover");
               }
 
-              // Add hover class to matched marker
+              {/* Add hover class */}
               for (let i = 0; i < markers.length; i++) {
                 if (markers[i].textContent === dataValue) {
                   markers[i].childNodes[0].classList.add("marker-hover");
@@ -98,7 +96,6 @@ class App extends Component {
             }
           }
 
-          // Fire on table row hover
           currentRow.onmouseover = createClickHandler(currentRow);
         }
       }
@@ -108,8 +105,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    // Get data and store as state
     fetch(
       dataSheet
     )
@@ -124,7 +119,7 @@ class App extends Component {
   render() {
     if (this.state.data.length > 0) {
 
-      // Show table and map if data is found
+      {/* Show table and map once data is ready */}
       return (
         <div>
           <div className="content">
@@ -137,7 +132,7 @@ class App extends Component {
       )
     }
 
-    // Show loader until data is ready
+    {/* Show loader until data is ready */}
     return (
       <div className="loader-wrapper">
         <span className="loader">
