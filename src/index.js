@@ -37,7 +37,7 @@ const Map = ({ items }) => (
     <GoogleMapReact
       defaultZoom={14}
       defaultCenter={{ 
-        lat: 51.458067, 
+        lat: 51.461067, 
         lng: -2.627673
       }}
       options={{

@@ -13,7 +13,7 @@ const markerStyle = {
   color: '#000',
   fontSize: 0,
   padding: 5,
-  boxShadow: 'rgba(195, 36, 96, 0.27) 0px 0px 6px 2px',
+  boxShadow: 'rgba(195, 36, 96, 0.3) 0 0 6px 2px',
   transition: '500ms ease'
 };
 
