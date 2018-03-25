@@ -45,7 +45,7 @@ const Map = ({ items }) => (
       }}
     >
     {items.map((item, i) => (
-      <MapMarker key={i} data-val={i}
+      <MapMarker key={i}
         lat={item["gsx$lat"]["$t"]}
         lng={item["gsx$lng"]["$t"]}
         text={i}
@@ -76,27 +76,37 @@ class App extends Component {
         for (i = 0; i < rows.length; i++) {
           let currentRow = table.rows[i];
 
-          let createClickHandler = function(row) {
+          let createEventHandler = function(row) {
             return function() {
               let dataValue = row.dataset.val;
               let markers = document.getElementById("google-map").getElementsByTagName("div");
+              let dataBox = document.createElement("span");
+              let dataBoxCollection = document.getElementById("google-map").getElementsByTagName("span");
+              dataBox.classList.add("data-box");
 
               {/* Remove hover class */}
               for (let i = 0; i < markers.length; i++) {
                 markers[i].classList.remove("marker-hover");
               }
 
-              {/* Add hover class */}
+              {/* Remove databoxes */}
+              for (let i = dataBoxCollection.length - 1; i >= 0; i--) {
+                dataBoxCollection[0].parentNode.removeChild(dataBoxCollection[0]);
+              }
+
+              {/* Add hover class and databox */}
               for (let i = 0; i < markers.length; i++) {
                 if (markers[i].textContent === dataValue) {
                   markers[i].childNodes[0].classList.add("marker-hover");
+                  markers[i].appendChild(dataBox);
+                  dataBox.innerText = row.childNodes[0].innerText;
                   break;
                 }
               }
             }
           }
 
-          currentRow.onmouseover = createClickHandler(currentRow);
+          currentRow.onmouseover = createEventHandler(currentRow);
         }
       }
       addRowHandlers();

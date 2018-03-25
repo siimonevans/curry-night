@@ -106,6 +106,20 @@
       border-color: #3ad5de !important;
       box-shadow: rgb(15, 162, 171) 0px 0px 6px 2px !important;
     }
+    .data-box {
+      position: absolute;
+      left: 2px;
+      top: -16px;
+      width: 150px;
+      padding: 7px 5px 7px 15px;
+      background-color: #0a868e;
+      border-radius: 3px;
+      border: 3px solid #0fa2ab;
+      display: inline-block;
+      text-align: center;
+      z-index: 9998;
+      animation: fadein 500ms;
+    }
     .loader-wrapper {
       height: 100vh;
       text-align: center;
@@ -123,8 +137,12 @@
       display: inline-block;
       width: 40px;
       height: 50px;
-      background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzUuMSA0My4zIj48c3R5bGU+LnN0MHtmaWxsOiNmMTViNDR9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTkuNyAwczYuNSA2LTMgMTguNWMtOC43IDExLjIgMiAyOC4xIDEyLjQgMjQuMiAwIDAtMi43LTMuMy0zLjUtNy0xLjUtNi44IDEuOC05LjIgNC44LTExLjYgMi44LTIuMiA3LjItNy4xIDIuOC0xNC4xIDAgMCAuMSA2LTguMSA4IDAgLjEgOC41LTE0LjMtNS40LTE4eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xOCA0MlMyLjYgMzkuNSA0LjggMjMuOWMuOC02LjEtMi42LTguMS00LjgtOS41IDAgMCAxMi4yLjQgMTEuMyA4QzkuOSAzNC43IDE1LjQgNDAuMiAxOCA0MnoiLz48L3N2Zz4=);
+      background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzUuMSA0My4zIj48c3R5bGU+LnN0MHtmaWxsOiNFODRGODl9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTkuNyAwczYuNSA2LTMgMTguNWMtOC43IDExLjIgMiAyOC4xIDEyLjQgMjQuMiAwIDAtMi43LTMuMy0zLjUtNy0xLjUtNi44IDEuOC05LjIgNC44LTExLjYgMi44LTIuMiA3LjItNy4xIDIuOC0xNC4xIDAgMCAuMSA2LTguMSA4IDAgLjEgOC41LTE0LjMtNS40LTE4eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xOCA0MlMyLjYgMzkuNSA0LjggMjMuOWMuOC02LjEtMi42LTguMS00LjgtOS41IDAgMCAxMi4yLjQgMTEuMyA4QzkuOSAzNC43IDE1LjQgNDAuMiAxOCA0MnoiLz48L3N2Zz4=);
       background-size: cover;
+    }
+    @keyframes fadein {
+        from { opacity: 0; transform: translate3d(-10px, 0, 0);}
+        to   { opacity: 1; transform: translate3d(0, 0, 0)}
     }
   </style>
 </head>
