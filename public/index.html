@@ -139,10 +139,25 @@
       height: 50px;
       background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMzUuMSA0My4zIj48c3R5bGU+LnN0MHtmaWxsOiNFODRGODl9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTkuNyAwczYuNSA2LTMgMTguNWMtOC43IDExLjIgMiAyOC4xIDEyLjQgMjQuMiAwIDAtMi43LTMuMy0zLjUtNy0xLjUtNi44IDEuOC05LjIgNC44LTExLjYgMi44LTIuMiA3LjItNy4xIDIuOC0xNC4xIDAgMCAuMSA2LTguMSA4IDAgLjEgOC41LTE0LjMtNS40LTE4eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xOCA0MlMyLjYgMzkuNSA0LjggMjMuOWMuOC02LjEtMi42LTguMS00LjgtOS41IDAgMCAxMi4yLjQgMTEuMyA4QzkuOSAzNC43IDE1LjQgNDAuMiAxOCA0MnoiLz48L3N2Zz4=);
       background-size: cover;
+      animation-name: pulse;
+      animation-duration: 900ms;
+      transform-origin: 70% 70%;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
     }
     @keyframes fadein {
-        from { opacity: 0; transform: translate3d(-10px, 0, 0);}
-        to   { opacity: 1; transform: translate3d(0, 0, 0)}
+      from { opacity: 0; transform: translate3d(-10px, 0, 0); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      30% { transform: scale(1); }
+      40% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+      60% { transform: scale(1); }
+      70% { transform: scale(1.13); }
+      80% { transform: scale(1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
