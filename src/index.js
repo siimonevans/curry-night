@@ -28,7 +28,7 @@ const Table = ({ items }) => (
         ))}
       </tbody>
     </table>
-    <a className="edit-data" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit data</a>
+    <a className="edit-data" target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/edit#gid=0">Edit</a>
   </div>
 );
 
@@ -36,10 +36,10 @@ const Table = ({ items }) => (
 const Map = ({ items }) => (
   <div className="google-map" id="google-map">
     <GoogleMapReact
-      defaultZoom={13}
+      defaultZoom={14}
       defaultCenter={{ 
-        lat: 51.468067, 
-        lng: -2.589673
+        lat: 51.458067, 
+        lng: -2.627673
       }}
       options={{
         styles: require("./map/map-style.json"),
@@ -127,8 +127,8 @@ class App extends Component {
 
       // Show table and map if data is found
       return (
-        <div className="flex">
-          <div className="left">
+        <div>
+          <div className="content">
             <h1>Torchbox Curry Night</h1>
             <Table items={ this.state.data } /> 
           </div>
@@ -138,7 +138,13 @@ class App extends Component {
     }
 
     // Show loader until data is ready
-    return <p className="loading">Loading curry madness...</p>;
+    return (
+      <div className="loader-wrapper">
+        <span className="loader">
+          <span className="loader-inner"></span>
+        </span>
+      </div>
+    );
   }
 }
 
