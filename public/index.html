@@ -30,6 +30,12 @@
       text-align: left;
       font-weight: 500;
     }
+    @media screen and (max-width: 600px) {
+      tr td:nth-child(3),
+      tr th:nth-child(3) {
+        display: none;
+      }
+    }
     tr {
       transition: background-color ease 300ms;
     }
