@@ -5,7 +5,6 @@ import { markerStyle } from "./map/marker-style.js";
 const MapMarker = ({ text }) => <div style={ markerStyle }>{ text }</div>;
 const dataSheet = "https://spreadsheets.google.com/feeds/list/1-5S5IVks0uIem8IlD3IOcf5TKsw5rpUeR2cZqNkf7XQ/od6/public/values?alt=json";
 
-{/* Build table */}
 const Table = ({ items }) => (
   <div className="table-wrapper">
     <table id="data-table">
@@ -31,7 +30,6 @@ const Table = ({ items }) => (
   </div>
 );
 
-{/* Build map */}
 const Map = ({ items }) => (
   <div className="google-map" id="google-map">
     <GoogleMapReact
@@ -68,8 +66,6 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-
-    {/* Highlight markers on table row hover */}
     function highlightMarker() {
       let i;
 
@@ -88,17 +84,14 @@ class App extends Component {
               let dataBoxCollection = document.getElementById("google-map").getElementsByTagName("span");
               dataBox.classList.add("data-box");
 
-              {/* Remove hover class */}
               for (let i = 0; i < markers.length; i++) {
                 markers[i].classList.remove("marker-hover");
               }
 
-              {/* Remove databoxes */}
               for (let i = dataBoxCollection.length - 1; i >= 0; i--) {
                 dataBoxCollection[0].parentNode.removeChild(dataBoxCollection[0]);
               }
 
-              {/* Add hover class and databox */}
               for (let i = 0; i < markers.length; i++) {
                 if (markers[i].textContent === dataValue) {
                   markers[i].childNodes[0].classList.add("marker-hover");
@@ -133,7 +126,6 @@ class App extends Component {
   render() {
     if (this.state.data.length > 0) {
 
-      {/* Show table and map once data is ready */}
       return (
         <div>
           <div className="content">
@@ -146,7 +138,6 @@ class App extends Component {
       )
     }
 
-    {/* Show loader until data is ready */}
     return (
       <div className="loader-wrapper">
         <span className="loader">
