@@ -41,7 +41,7 @@ const Map = ({ items }) => (
       }}
       defaultZoom={14}
       defaultCenter={{ 
-        lat: 51.461067, 
+        lat: 51.458467, 
         lng: -2.627673
       }}
       options={{
