@@ -35,6 +35,10 @@ const Table = ({ items }) => (
 const Map = ({ items }) => (
   <div className="google-map" id="google-map">
     <GoogleMapReact
+      bootstrapURLKeys={{
+        key: '',
+        language: 'en'
+      }}
       defaultZoom={14}
       defaultCenter={{ 
         lat: 51.461067, 
